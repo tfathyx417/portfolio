@@ -1,1 +1,42 @@
-<p>footer works!</p>
+<footer
+  class="border-t border-[var(--border-subtle)] bg-panel py-5 px-16 max-lg:px-10 max-md:px-6"
+>
+  <div
+    class="max-w-[1060px] mx-auto flex items-center justify-between gap-4 max-sm:flex-col max-sm:text-center"
+  >
+    <!-- Copyright -->
+    <p class="text-[12px] text-ink-3 leading-relaxed">
+      &copy; {{ year }} Taha Mahmoud &mdash;
+      {{ "builtWith" | translate }}
+    </p>
+
+    <!-- Links + back to top -->
+    <div class="flex items-center gap-5">
+      <a
+        href="https://github.com/taha-mahmoud37"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[12px] text-ink-3 no-underline transition-colors duration-200 hover:text-accent"
+      >
+        GitHub
+      </a>
+      <a
+        href="https://www.linkedin.com/in/taha-mahmoud-1913161aa"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[12px] text-ink-3 no-underline transition-colors duration-200 hover:text-accent"
+      >
+        LinkedIn
+      </a>
+      <span class="w-px h-3.5 bg-[var(--border-subtle)]" aria-hidden="true"></span>
+      <button
+        (click)="scrollToTop()"
+        class="inline-flex items-center gap-1.5 text-[12px] text-ink-3 bg-transparent border-none cursor-pointer p-0 transition-colors duration-200 hover:text-accent"
+        [attr.aria-label]="'backToTop' | translate"
+      >
+        <i class="fa-solid fa-arrow-up text-[10px]"></i>
+        {{ "backToTop" | translate }}
+      </button>
+    </div>
+  </div>
+</footer>

@@ -1,14 +1,18 @@
-<div
-  [class.rtl]="currentLanguage === 'en'"
-  class="language-selector flex gap-4 justify-end"
+<button
+  [class]="iconOnly
+    ? 'w-full h-11 flex flex-col items-center justify-center gap-0.5 bg-transparent border-none rounded-xl text-ink-2 cursor-pointer transition-all duration-200 hover:bg-raised hover:text-accent'
+    : 'flex items-center gap-1.5 bg-raised border border-wire rounded-[10px] px-[10px] py-2 text-ink-2 cursor-pointer text-[12px] transition-all duration-200 whitespace-nowrap hover:bg-accent-muted hover:border-wire-hi hover:text-accent max-md:text-[14px] max-md:px-[14px] max-md:py-[10px]'"
+  (click)="toggleLanguage()"
+  type="button"
 >
-  <div class="lang" role="button" (click)="toggleLanguage()">
-    <i class="fa-solid fa-globe"></i>
-  </div>
-  @if(currentLanguage === 'en') {
-  <button class="rounded-2xl">العربية</button>
-  }@else {
-
-  <button class="rounded-2xl">English</button>
+  <i class="fa-solid fa-globe text-[14px] max-md:text-[16px]"></i>
+  @if (!iconOnly) {
+    @if (currentLanguage === "en") {
+    <span class="font-medium">عربي</span>
+    } @else {
+    <span class="font-medium">EN</span>
+    }
+  } @else {
+    <span class="text-[10px] font-medium leading-none tracking-wide">{{ currentLanguage === 'en' ? 'AR' : 'EN' }}</span>
   }
-</div>
+</button>

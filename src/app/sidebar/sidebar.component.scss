@@ -1,190 +1,65 @@
-@import "../../assets/scss/configurations/config";
-.wrapper {
-  background-color: $black-light2;
-  color: $secondary-color;
-  width: 100px;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: $primary-color;
-    font-family: $font-family;
-    width: 50px;
-    height: 50px;
-    background-color: $white-light1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
+// ── Desktop active nav link ──────────────────────────────────────────────────
+// Left indicator: inset box-shadow (3px, no absolute positioning needed)
+// Full-width items mean the inset bar always aligns with the sidebar edge.
+.nav-link.active {
+  color: var(--accent);
+  background: rgba(108, 99, 255, 0.09);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: var(--accent);
+    border-radius: 3px;
+    box-shadow:
+      0 0 10px var(--accent-glow),
+      0 0 20px var(--accent-glow);
   }
-  .rtl {
-    a {
-      font-family: $font-family-arabic;
-    }
-  }
-  .sidebar-content {
-    display: flex;
-    flex-grow: 1;
-    ul {
-      flex-grow: 1;
-    }
-    li {
-      position: relative;
-      z-index: 999;
-      transition: all 0.3s ease-in-out;
-      img {
-        width: 33px;
-        height: 33px;
-      }
-      p {
-        position: absolute;
-        background-color: $primary-color;
-        color: $secondary-color;
-        width: 100px;
-        top: -25px;
-        text-align: center;
-        inset-inline-start: 35px;
-        padding: 7px 3px;
-        border-radius: 12px;
-        @include fontStyles($font-size2, $font-weight2, $font-family);
-        display: none;
-        transition: all 0.3s ease-in-out;
-      }
-      &:hover {
-        p {
-          display: block;
-        }
-        img {
-          filter: invert(47%) sepia(49%) saturate(6505%) hue-rotate(228deg)
-            brightness(102%) contrast(107%);
-        }
-      }
-    }
+
+  i {
+    color: var(--accent);
+    filter: drop-shadow(0 0 6px var(--accent-glow));
   }
 }
 
-.nav-bar {
-  display: none;
-}
-.show {
-  display: flex !important;
-  width: 100%;
-  height: 100dvh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
+// Tooltip: show on nav-item hover
+.nav-item:hover .nav-tooltip {
+  opacity: 1 !important;
+  transform: translateY(-50%) translateX(0) !important;
+  pointer-events: auto;
 }
 
-@media (max-width: 768px) {
-  .wrapper {
-    flex-direction: row;
-    padding-inline: 10px;
-    height: 80px;
-    width: 100%;
-    position: relative;
-    z-index: 888;
-    .logo {
-      margin-bottom: 0 !important;
-    }
-    .sidebar-content {
-      display: none;
-      ul {
-        flex-direction: row;
-      }
-    }
-    .lang {
-      display: none;
-    }
-    .sidebar-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 35px;
-      height: 2px;
-      background-color: $white-light1;
-      cursor: pointer;
-      position: absolute;
-      inset-inline-end: 10px;
-      z-index: 9999;
+// ── Mobile active link ────────────────────────────────────────────────────────
+.mobile-nav-link.active-mobile {
+  background: var(--accent-muted);
+  color: var(--accent);
 
-      &::after {
-        content: "";
-        width: 90%;
-        height: 2px;
-
-        background-color: $white-light1;
-        position: absolute;
-        top: -10px;
-        inset-inline-end: 0;
-      }
-      &::before {
-        content: "";
-        width: 90%;
-        height: 2px;
-
-        background-color: $white-light1;
-        position: absolute;
-        top: 10px;
-        inset-inline-start: 0;
-      }
-    }
+  i {
+    color: var(--accent);
   }
+}
 
-  .nav-bar {
-    padding-top: 20px;
-    padding-inline: 8px;
-    background-color: $black-light2;
-    display: none;
-
-    color: #fff;
-    .sidebar-toggle {
-      cursor: pointer !important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 35px;
-      height: 2px;
-      cursor: pointer;
-      position: absolute;
-      inset-inline-end: 10px;
-      z-index: 9999;
-
-      &::after {
-        content: "";
-        width: 90%;
-        height: 2px;
-        transform: rotate(-46deg);
-        background-color: #dfd0b8;
-        position: absolute;
-        top: 15px;
-        inset-inline-end: -1px;
-      }
-      &::before {
-        content: "";
-        width: 90%;
-        height: 2px;
-        transform: rotate(46deg);
-        background-color: #dfd0b8;
-        position: absolute;
-        top: 16px;
-        inset-inline-start: 4px;
-      }
-    }
-    ul {
-      padding-top: 60px;
-      li {
-        a {
-          @include fontStyles($font-size2, $font-weight2, $font-family);
-          color: $secondary-color;
-        }
-      }
-    }
+// ── Hamburger → X animation ───────────────────────────────────────────────────
+.hamburger.open {
+  span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
   }
+  span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+    width: 20px;
+  }
+}
+
+// ── Arabic logo font ──────────────────────────────────────────────────────────
+.logo-link.arabic,
+.mobile-logo.arabic {
+  font-family: "Almarai", sans-serif;
 }

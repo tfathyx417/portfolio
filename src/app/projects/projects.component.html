@@ -1,11 +1,176 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-  @for(project of projects; track project.id) {
-  <div class="col">
-    <app-project [project]="project" />
+<section class="px-16 py-14 max-lg:px-10 max-md:px-6 max-md:py-10">
+<div class="max-w-[1060px] mx-auto w-full">
+
+  <!-- ═══ SECTION HEADER ══════════════════════════════════════════ -->
+  <div
+    class="flex items-end justify-between gap-6 mb-12 max-sm:flex-col max-sm:items-start max-sm:gap-5"
+    appScrollReveal
+    revealDirection="up"
+  >
+    <!-- Left -->
+    <div>
+      <span class="section-badge mb-4">
+        <i class="fa-solid fa-code text-[10px]"></i>
+        Portfolio
+      </span>
+      <h2 class="text-[clamp(1.6rem,3vw,2.2rem)] font-bold text-ink leading-tight mb-2">
+        {{ "myProjects" | translate }}
+      </h2>
+      <p class="text-[14px] text-ink-2 max-w-[480px] leading-relaxed">
+        {{ "projectsSubtitle" | translate }}
+      </p>
+    </div>
+
+    <!-- Right: stats -->
+    <div class="flex items-center gap-8 shrink-0 pb-1 max-sm:gap-6">
+      <div class="text-end max-sm:text-start">
+        <p class="text-[1.75rem] font-bold text-accent leading-none">{{ pad(totalProjects) }}</p>
+        <p class="text-[11px] text-ink-3 mt-1 uppercase tracking-wide">Projects</p>
+      </div>
+      <div class="w-px h-10 bg-wire"></div>
+      <div class="text-end max-sm:text-start">
+        <p class="text-[1.75rem] font-bold text-accent leading-none">{{ uniqueTechnologiesCount }}+</p>
+        <p class="text-[11px] text-ink-3 mt-1 uppercase tracking-wide">Technologies</p>
+      </div>
+    </div>
   </div>
-  } @empty {
-  <div class="col">
-    <p class="text-center text-muted">no projects</p>
-  </div>
+
+  <!-- ═══ FEATURED HERO CARD ═══════════════════════════════════════ -->
+  @if (featuredProject) {
+    <div
+      class="relative h-[400px] max-lg:h-[340px] max-md:h-[280px] rounded-2xl overflow-hidden group mb-4 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_36px_90px_rgba(0,0,0,0.6)]"
+      appScrollReveal
+      [revealDelay]="80"
+      revealDirection="up"
+    >
+      <!-- Full-bleed image -->
+      <img
+        [src]="featuredProject.image"
+        [alt]="featuredProject | getlang: 'title'"
+        loading="lazy"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      />
+
+      <!-- Cinematic gradient -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-[rgba(3,5,9,0.97)] via-[rgba(3,5,9,0.55)] to-[rgba(108,99,255,0.12)]"
+      ></div>
+
+      <!-- Top accent bar -->
+      <div
+        class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-70"
+      ></div>
+
+      <!-- Watermark number -->
+      <span
+        class="absolute top-4 end-7 text-[5.5rem] font-black text-white/[0.045] leading-none select-none pointer-events-none font-mono max-md:text-[3.5rem]"
+        aria-hidden="true"
+      >{{ pad(featuredProject.id) }}</span>
+
+      <!-- Top-left: badge + counter -->
+      <div class="absolute top-6 start-7 flex items-center gap-3">
+        <span
+          class="inline-flex items-center gap-[6px] text-[10px] font-bold text-white uppercase tracking-[0.14em] px-[10px] py-[5px] bg-accent/30 border border-accent/50 rounded-full backdrop-blur-sm"
+        >
+          <i class="fa-solid fa-star text-[8px]"></i>
+          {{ "featured" | translate }}
+        </span>
+        <span class="text-[11px] font-mono text-white/30">
+          {{ pad(featuredProject.id) }} / {{ pad(totalProjects) }}
+        </span>
+      </div>
+
+      <!-- Bottom content -->
+      <div class="absolute bottom-0 inset-x-0 p-8 max-md:p-5">
+        <h3
+          class="text-[1.55rem] font-bold text-white mb-2 leading-snug group-hover:text-accent/95 transition-colors duration-300 max-md:text-[1.2rem]"
+        >
+          {{ featuredProject | getlang: "title" }}
+        </h3>
+
+        <p class="text-[13px] text-white/60 leading-[1.8] mb-5 max-w-[540px] line-clamp-2 max-md:hidden">
+          {{ featuredProject | getlang: "description" }}
+        </p>
+
+        <!-- Tech tags (glass variant) -->
+        <div class="flex flex-wrap gap-2 mb-6 max-md:mb-4">
+          @for (tech of featuredProject.technologies; track tech) {
+            <span
+              class="inline-flex items-center px-[9px] py-[3px] bg-white/10 border border-white/18 text-white/75 text-[10px] font-medium rounded-full backdrop-blur-sm"
+              style="font-family: 'Fira Code', 'Cascadia Code', ui-monospace, monospace; letter-spacing: 0.01em;"
+            >{{ tech }}</span>
+          }
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-3">
+          <a
+            [href]="featuredProject.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-[10px] rounded-xl text-[13px] font-semibold no-underline bg-white text-[#080c14] transition-all duration-200 hover:bg-white/90 hover:-translate-y-px hover:shadow-[0_6px_24px_rgba(255,255,255,0.2)]"
+          >
+            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+            {{ "live" | translate }}
+          </a>
+          <a
+            [href]="featuredProject.github"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-[10px] rounded-xl text-[13px] font-semibold no-underline bg-white/10 border border-white/22 text-white transition-all duration-200 hover:bg-white/18 hover:-translate-y-px backdrop-blur-sm"
+          >
+            <i class="fa-brands fa-github text-[12px]"></i>
+            {{ "github" | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
   }
+
+  <!-- ═══ DIVIDER ═══════════════════════════════════════════════════ -->
+  <div
+    class="flex items-center gap-4 my-10"
+    appScrollReveal
+    [revealDelay]="40"
+    revealDirection="up"
+  >
+    <div class="flex-1 h-px bg-wire"></div>
+    <span class="text-[11px] text-ink-3 uppercase tracking-[0.14em] font-medium px-2">
+      More Work
+    </span>
+    <div class="flex-1 h-px bg-wire"></div>
+  </div>
+
+  <!-- ═══ PROJECTS GRID ════════════════════════════════════════════ -->
+  <div class="grid grid-cols-3 gap-6 max-[1100px]:grid-cols-2 max-md:grid-cols-1">
+    @for (project of otherProjects; track project.id; let i = $index) {
+      <div appScrollReveal [revealDelay]="i * 70" revealDirection="up">
+        <app-project [project]="project" />
+      </div>
+    } @empty {
+      <p class="text-ink-3 text-center text-[15px] col-span-full py-10">No projects yet</p>
+    }
+  </div>
+
+  <!-- ═══ GITHUB CTA ════════════════════════════════════════════════ -->
+  <div
+    class="mt-14 pt-10 border-t border-wire flex flex-col items-center gap-3"
+    appScrollReveal
+    [revealDelay]="60"
+    revealDirection="up"
+  >
+    <p class="text-[13px] text-ink-3">Want to see more?</p>
+    <a
+      href="https://github.com/taha-mahmoud37"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2.5 text-[14px] font-semibold text-ink no-underline border border-wire rounded-xl px-6 py-[11px] bg-surface transition-all duration-200 hover:border-wire-hi hover:text-accent hover:bg-accent-muted hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+    >
+      <i class="fa-brands fa-github text-[16px]"></i>
+      {{ "viewAllGithub" | translate }}
+      <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-ink-3"></i>
+    </a>
+  </div>
+
 </div>
+</section>

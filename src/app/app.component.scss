@@ -1,125 +1,21 @@
-@import "./../assets/scss/configurations/config";
-
-.layout {
-  display: flex;
-  height: 100dvh;
-}
-
-.loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $primary-color;
-}
-
-.loader {
+// Loader ring animation — needs ::border-top-color + keyframe, can't be expressed as Tailwind utilities
+.loader-ring {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: block;
-  width: 48px;
-  height: 48px;
+  inset: 0;
   border-radius: 50%;
-  position: relative;
-  animation: rotate 1s linear infinite;
-}
-.loader::before,
-.loader::after {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  inset: 0px;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  animation: prixClipFix 2s linear infinite;
-}
-.loader::after {
-  border-color: #ff3d00;
-  animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
-  inset: 6px;
+  border: 2px solid var(--border-subtle);
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
 }
 
-.active {
-  display: none;
+// Scrollbar for the main content area
+.content::-webkit-scrollbar {
+  width: 5px;
 }
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.content::-webkit-scrollbar-track {
+  background: transparent;
 }
-
-@keyframes prixClipFix {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
-  }
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-  }
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-  }
-  75% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-  }
-  100% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
-  }
-}
-
-.content {
-  flex: 1;
-  background-color: $secondary-color;
-
-  .container {
-    height: calc(100dvh - 57px);
-  }
-}
-
-/* Whole scrollbar */
-body::-webkit-scrollbar {
-  width: 12px;
-}
-
-/* Track (background) */
-body::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-/* Handle (thumb) */
-body::-webkit-scrollbar-thumb {
-  background: #6c63ff;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-body::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-@media (max-width: 768px) {
-  .layout {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-  }
-
-  .content {
-    height: auto;
-    .container {
-      height: auto;
-    }
-  }
+.content::-webkit-scrollbar-thumb {
+  background: rgba(108, 99, 255, 0.5);
+  border-radius: 4px;
 }

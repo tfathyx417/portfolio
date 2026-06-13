@@ -1,26 +1,143 @@
-<div class="home py-3 h-full flex items-center">
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="avater">
-        <img src="../../assets/images/a1.jpeg" alt="" />
+<section
+  class="relative min-h-full flex items-center px-16 py-16 max-lg:px-10 max-lg:py-14 max-md:px-6 max-md:py-10 max-md:min-h-[calc(100dvh-70px)] overflow-hidden"
+>
+  <!-- Dot-grid texture -->
+  <div class="dot-grid absolute inset-0 pointer-events-none select-none" aria-hidden="true"></div>
+
+  <!-- Ambient orbs -->
+  <div
+    class="absolute top-[5%] end-[5%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,var(--accent-muted)_0%,transparent_65%)] pointer-events-none select-none"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute bottom-[-5%] start-[-10%] w-[380px] h-[380px] rounded-full bg-[radial-gradient(circle,var(--accent-muted)_0%,transparent_65%)] pointer-events-none select-none opacity-60"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="grid grid-cols-[1fr_300px] [grid-template-areas:'text_image'] gap-20 items-center w-full max-w-[1060px] mx-auto max-lg:grid-cols-1 max-lg:[grid-template-areas:'image'_'text'] max-lg:text-center max-lg:gap-12 relative z-[1]"
+  >
+    <!-- Avatar -->
+    <div class="[grid-area:image] flex justify-center" appScrollReveal [revealDelay]="100" revealDirection="right">
+      <div class="relative w-[280px] h-[340px] max-lg:w-[200px] max-lg:h-[240px] max-lg:mx-auto animate-float">
+        <!-- Photo -->
+        <img
+          src="assets/images/profile.jpeg"
+          alt="Taha Mahmoud"
+          fetchpriority="high"
+          class="w-full h-full object-cover object-top rounded-[20px] relative z-[1] border-2 border-accent/25 shadow-[0_0_48px_var(--accent-glow),0_20px_60px_rgba(0,0,0,0.3)]"
+        />
+        <!-- Inner pulsing ring -->
+        <div class="absolute inset-[-7px] rounded-[27px] border-2 border-accent/45 z-0 animate-pulse-ring"></div>
+        <!-- Outer ring -->
+        <div class="absolute inset-[-16px] rounded-[34px] border border-accent/12 z-0"></div>
+        <!-- Bottom glow -->
+        <div
+          class="absolute bottom-[-28px] start-1/2 -translate-x-1/2 w-[80%] h-[50px] bg-accent-glow blur-[32px] z-0 rounded-full opacity-70"
+        ></div>
+
+        <!-- Available badge -->
+        <div
+          class="absolute top-[-14px] end-[-14px] z-[2] flex items-center gap-[6px] bg-panel border border-wire text-good text-[11px] font-semibold px-[10px] py-[6px] rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.2)] backdrop-blur-sm"
+        >
+          <span class="w-[6px] h-[6px] bg-good rounded-full shrink-0 animate-pulse-dot"></span>
+          {{ "available" | translate }}
+        </div>
       </div>
     </div>
-    <div class="col-lg-8 flex items-center">
-      <div class="content-info">
-        <h5>{{ "hello" | translate }}</h5>
-        <h1>
-          {{ "name" | translate }}
-        </h1>
-        <p class="job-title">
-          {{ "jobTitle" | translate }}
-        </p>
-        <p class="description">
-          {{ "description" | translate }}
-        </p>
-        <button class="start" (click)="start()">
-          {{ "letStart" | translate }}
-        </button>
+
+    <!-- Text content -->
+    <div class="[grid-area:text]" appScrollReveal [revealDelay]="0" revealDirection="up">
+      <!-- Code-style label -->
+      <p class="text-[13px] font-mono text-accent/70 mb-5 tracking-wide max-lg:flex max-lg:justify-center">
+        &lt; Frontend Engineer /&gt;
+      </p>
+
+      <!-- Name with shimmer -->
+      <h1 class="shimmer-name text-[clamp(1.9rem,3.5vw,3rem)] font-extrabold leading-[1.18] mb-3">
+        {{ "name" | translate }}
+      </h1>
+
+      <!-- Tagline -->
+      <p class="text-[15px] text-ink-2 font-medium mb-5 max-w-[460px] max-lg:mx-auto">
+        {{ "heroTagline" | translate }}
+      </p>
+
+      <!-- Description -->
+      <p class="text-[14px] text-ink-2 leading-[1.9] max-w-[500px] mb-8 max-lg:max-w-full">
+        {{ "description" | translate }}
+      </p>
+
+      <!-- CTA row -->
+      <div class="flex flex-wrap items-center gap-4 mb-9 max-lg:justify-center">
+
+        <!-- Primary: pill CTA -->
+        <a
+          routerLink="/projects"
+          class="inline-flex items-center gap-2.5 no-underline px-9 py-[13px] rounded-full text-[15px] font-semibold text-white tracking-[0.01em] transition-all duration-200 hover:-translate-y-[3px] btn-primary"
+        >
+          {{ "viewProjects" | translate }}
+          @if (currentLanguage === 'en') {
+            <i class="fa-solid fa-arrow-right text-[12px]"></i>
+          } @else {
+            <i class="fa-solid fa-arrow-left text-[12px]"></i>
+          }
+        </a>
+
+        <!-- Secondary: outlined pill -->
+        <a
+          href="assets/Taha-Mahmoud-CV.pdf"
+          download
+          class="inline-flex items-center gap-2.5 no-underline px-8 py-[13px] rounded-full text-[15px] font-semibold text-accent border border-accent/40 bg-accent/[0.07] tracking-[0.01em] transition-all duration-200 hover:bg-accent/[0.14] hover:border-accent/60 hover:-translate-y-[3px]"
+        >
+          {{ "downloadCV" | translate }}
+          <i class="fa-solid fa-download text-[13px]"></i>
+        </a>
+
+        <!-- Separator -->
+        <span class="w-px h-12 bg-wire self-center max-sm:hidden" aria-hidden="true"></span>
+
+        <!-- Social icons: clean circles, no heavy border -->
+        <div class="flex items-center gap-2.5">
+          <a
+            href="https://github.com/taha-mahmoud37"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub"
+            class="social-icon hover:bg-[#24292e] hover:border-[#24292e] hover:text-white"
+          ><i class="fa-brands fa-github text-[17px]"></i></a>
+
+          <a
+            href="https://www.linkedin.com/in/taha-mahmoud-1913161aa"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            class="social-icon hover:bg-[#0a66c2] hover:border-[#0a66c2] hover:text-white"
+          ><i class="fa-brands fa-linkedin-in text-[17px]"></i></a>
+
+          <a
+            href="https://x.com/taha_mahmoud417
+"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            class="social-icon hover:bg-[#e7e7e7] hover:border-[#e7e7e7] hover:text-black"
+          ><i class="fa-brands fa-x-twitter text-[17px]"></i></a>
+        </div>
+      </div>
+
+      <!-- Tech chips -->
+      <div class="flex flex-wrap gap-3 max-lg:justify-center">
+        @for (tech of techChips; track tech) {
+          <span class="tech-tag">{{ tech }}</span>
+        }
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Scroll chevron (desktop only) -->
+  <div
+    class="absolute bottom-8 start-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 max-md:hidden pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <span class="text-[10px] text-ink-3 uppercase tracking-[0.18em]">Scroll</span>
+    <i class="fa-solid fa-chevron-down text-ink-3 text-[11px] scroll-chevron"></i>
+  </div>
+</section>

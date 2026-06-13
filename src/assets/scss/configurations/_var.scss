@@ -1,9 +1,30 @@
-$primary-color: #6c63ff;
-$main-color: #000;
-$black-light1: rgba(0, 0, 0, 0.8);
-$black-light2: #222831;
-$gray-light1: #393e46;
-$gray-light2: #948979;
-$secondary-color: #f8f9fa;
-$white-light1: #dfd0b8;
-$bg-color: #c2bebe;
+// SCSS aliases for CSS custom properties.
+// Actual color values are defined in styles.scss (:root / [data-theme="light"]).
+// IMPORTANT: do not use SCSS color functions (darken, rgba, lighten) on these —
+// they are var() references, not static values.
+
+$primary-color: var(--accent);
+$accent-hover: var(--accent-hover);
+$accent-muted: var(--accent-muted);
+$accent-glow: var(--accent-glow);
+
+$bg-color: var(--bg-color);
+$sidebar-bg: var(--sidebar-bg);
+$bg-surface: var(--bg-surface);
+$bg-elevated: var(--bg-elevated);
+
+$border-subtle: var(--border-subtle);
+$border-accent: var(--border-accent);
+
+$main-color: var(--main-color);
+$text-secondary: var(--text-secondary);
+$text-muted: var(--text-muted);
+$success-color: var(--success-color);
+
+// Legacy aliases (components still reference these)
+$black-light1: rgba(0, 0, 0, 0.6);
+$black-light2: var(--sidebar-bg);
+$gray-light1: var(--text-secondary);
+$gray-light2: var(--text-muted);
+$secondary-color: var(--main-color);
+$white-light1: var(--border-subtle);

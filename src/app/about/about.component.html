@@ -1,71 +1,136 @@
-<div class="row about">
-  <div class="col-lg-6">
-    <div class="about-me">
-      <div class="personal-info mb-4">
-        <h2>{{ "nameAbout" | translate }}</h2>
-        <p class="text-xl font-medium job">
+<section
+  class="min-h-full flex items-center px-16 py-16 max-lg:px-10 max-lg:py-14 max-md:px-6 max-md:py-8 max-md:min-h-[calc(100dvh-70px)]"
+>
+  <div
+    class="grid grid-cols-[1fr_340px] gap-20 items-center w-full max-w-[1060px] mx-auto max-lg:grid-cols-1 max-lg:gap-12"
+  >
+    <!-- ═══ LEFT: content ═══════════════════════════════════ -->
+    <div class="flex flex-col gap-9 max-lg:items-center max-lg:text-center">
+
+      <!-- Badge + Heading -->
+      <div appScrollReveal [revealDelay]="0" revealDirection="up">
+        <span class="section-badge mb-4">
+          <i class="fa-solid fa-user text-[10px]"></i>
+          {{ "about" | translate }}
+        </span>
+        <h2
+          class="text-[clamp(1.6rem,3vw,2.6rem)] font-bold text-ink mb-2 leading-[1.25]"
+        >
+          {{ "nameAbout" | translate }}
+        </h2>
+        <p class="text-[15px] text-accent font-medium mb-4">
           {{ "job" | translate }}
         </p>
-        <p class="desc text-base">
+        <p class="text-[14px] text-ink-2 leading-[1.9]">
           {{ "aboutDescription" | translate }}
         </p>
       </div>
-      <div class="personal-skills">
-        <div class="row row-cols-5 gap-y-3 skills-list">
-          <div class="col">
-            <img src="../../assets/images/vscode.png" alt="vscode" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/html.png" alt="html" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/css.png" alt="css" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/sass.png" alt="sass" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/bootstrap.png" alt="bootstrap" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/js.jpg" alt="javascript" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/tss.png" alt="typescript" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/react.png" alt="reactjs" />
-          </div>
-          <div class="col">
-            <img src="../../assets/images/angular.png" alt="angular" />
-          </div>
+
+      <!-- Stats -->
+      <div
+        class="grid grid-cols-3 gap-3 w-full"
+        appScrollReveal
+        [revealDelay]="80"
+        revealDirection="up"
+      >
+        <div
+          class="stat-card group bg-surface border border-wire rounded-xl p-4 text-center transition-all duration-250 hover:border-wire-hi hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.14)]"
+        >
+          <i
+            class="fa-solid fa-briefcase text-accent/50 group-hover:text-accent/80 text-[17px] mb-2.5 block transition-colors duration-200"
+          ></i>
+          <p class="text-[1.75rem] font-bold text-accent leading-none mb-1.5">2+</p>
+          <p class="text-[11px] text-ink-3 leading-snug">{{ "yearsExp" | translate }}</p>
+        </div>
+        <div
+          class="stat-card group bg-surface border border-wire rounded-xl p-4 text-center transition-all duration-250 hover:border-wire-hi hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.14)]"
+        >
+          <i
+            class="fa-solid fa-code-branch text-accent/50 group-hover:text-accent/80 text-[17px] mb-2.5 block transition-colors duration-200"
+          ></i>
+          <p class="text-[1.75rem] font-bold text-accent leading-none mb-1.5">15+</p>
+          <p class="text-[11px] text-ink-3 leading-snug">{{ "projectsDone" | translate }}</p>
+        </div>
+        <div
+          class="stat-card group bg-surface border border-wire rounded-xl p-4 text-center transition-all duration-250 hover:border-wire-hi hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.14)]"
+        >
+          <i
+            class="fa-solid fa-layer-group text-accent/50 group-hover:text-accent/80 text-[17px] mb-2.5 block transition-colors duration-200"
+          ></i>
+          <p class="text-[1.75rem] font-bold text-accent leading-none mb-1.5">9+</p>
+          <p class="text-[11px] text-ink-3 leading-snug">{{ "techMastered" | translate }}</p>
         </div>
       </div>
-      <div>
+
+      <!-- Tech Stack -->
+      <div appScrollReveal [revealDelay]="140" revealDirection="up">
+        <p class="text-[12px] font-semibold text-ink-3 uppercase tracking-[0.1em] mb-3">
+          Tech Stack
+        </p>
+        <div class="flex flex-wrap gap-2.5 max-lg:justify-center">
+          @for (item of techStack; track item.name) {
+            <div
+              class="group flex flex-col items-center gap-1.5 w-[64px] cursor-default"
+              [title]="item.name"
+            >
+              <div
+                class="w-[52px] h-[52px] bg-surface border border-wire rounded-xl flex items-center justify-center transition-all duration-200 group-hover:bg-accent-muted group-hover:border-wire-hi group-hover:-translate-y-[3px] group-hover:shadow-[0_6px_18px_var(--accent-glow)]"
+              >
+                <img
+                  [src]="item.img"
+                  [alt]="item.name"
+                  loading="lazy"
+                  class="w-[30px] h-[30px] object-contain rounded"
+                />
+              </div>
+              <span class="text-[10px] text-ink-3 font-medium text-center leading-tight group-hover:text-accent transition-colors duration-200">
+                {{ item.name }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div appScrollReveal [revealDelay]="180" revealDirection="up">
         <button
-          class="btn flex items-center justify-center gap-2 work-btn text-white rounded-xl"
+          class="inline-flex items-center gap-2.5 bg-accent text-white border-none px-7 py-[13px] rounded-xl text-[15px] font-semibold cursor-pointer transition-all duration-200 hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_10px_32px_var(--accent-glow)]"
           (click)="goToWork()"
         >
           {{ "work" | translate }}
-          @if(currentLanguage === 'en') {
-          <i class="fa-solid fa-arrow-right"></i>
+          @if (currentLanguage === 'en') {
+            <i class="fa-solid fa-arrow-right text-[13px]"></i>
           } @else {
-          <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left text-[13px]"></i>
           }
         </button>
       </div>
     </div>
-  </div>
-  <div class="col-lg-6 flex justify-center items-center">
-    <div class="about-image">
-      <img
-        src="../../assets/images/me.jpeg"
-        alt="Taha Mahmoud"
-        class="rounded-lg shadow-lg"
-        width="100%"
-        height="100%"
-        loading="lazy"
-      />
+
+    <!-- ═══ RIGHT: Photo ═════════════════════════════════════ -->
+    <div
+      class="flex justify-center max-lg:order-first"
+      appScrollReveal
+      [revealDelay]="100"
+      revealDirection="right"
+    >
+      <div class="relative w-full max-w-[320px] max-lg:max-w-[260px]">
+        <img
+          src="assets/images/about.jpeg"
+          alt="Taha Mahmoud"
+          loading="lazy"
+          class="w-full h-[420px] object-cover rounded-2xl border-2 border-accent/20 relative z-[1] shadow-[0_0_40px_var(--accent-glow),0_20px_50px_rgba(0,0,0,0.25)] max-lg:h-[300px] max-md:h-[240px]"
+        />
+        <div
+          class="absolute inset-[-7px] rounded-[20px] border-2 border-accent/35 z-0 animate-pulse-ring"
+        ></div>
+        <div
+          class="absolute inset-[-16px] rounded-[26px] border border-accent/10 z-0"
+        ></div>
+        <div
+          class="absolute bottom-[-24px] start-1/2 -translate-x-1/2 w-[65%] h-[44px] bg-accent-glow blur-[28px] z-0 rounded-full opacity-70"
+        ></div>
+      </div>
     </div>
   </div>
-</div>
+</section>

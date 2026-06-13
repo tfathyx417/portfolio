@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [TranslatePipe],
+  imports: [RouterLink, TranslatePipe, ScrollRevealDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private router: Router) {
-    // This constructor can be used for any initialization if needed
-  }
-  start() {
-    this.router.navigate(['/about']);
+  readonly techChips = ['Angular', 'TypeScript', 'RxJS', 'Tailwind CSS', 'SCSS'];
+
+  constructor(private languageService: LanguageService) {}
+
+  get currentLanguage() {
+    return this.languageService.currentLang;
   }
 }

@@ -1,76 +1,220 @@
-<div class="wrapper flex flex-col justify-between h-full items-center py-4">
-  <div [class.rtl]="currentLanguage === 'ar'" class="logo mb-4 rtl">
-    <a routerLink="/home"> {{ "tm" | translate }} </a>
+<!-- ═══════════════════════════════════════
+     DESKTOP SIDEBAR — icon-only vertical nav
+     ═══════════════════════════════════════ -->
+<nav
+  class="hidden md:flex w-20 h-dvh bg-panel border-e border-e-[var(--border-subtle)] flex-col items-center py-5 shadow-[var(--sidebar-shadow,none)] transition-shadow duration-[250ms]"
+>
+  <!-- Logo -->
+  <div class="w-full px-3 mb-4 flex justify-center">
+    <a
+      routerLink="/home"
+      class="logo-link w-11 h-11 bg-gradient-to-br from-accent-muted to-[rgba(108,99,255,0.06)] border border-wire-hi rounded-xl flex items-center justify-center text-[15px] font-bold text-accent no-underline transition-all duration-200 shadow-[0_0_16px_var(--accent-glow)] hover:bg-accent hover:text-white hover:border-accent hover:scale-105 hover:shadow-[0_0_24px_var(--accent-glow)]"
+      [class.arabic]="currentLanguage === 'ar'"
+    >
+      {{ "tm" | translate }}
+    </a>
   </div>
-  <div>
-    <button class="sidebar-toggle none" (click)="showNav()"></button>
+
+  <!-- Logo / nav separator -->
+  <div class="w-8 h-px bg-[var(--border-subtle)] mb-4"></div>
+
+  <!-- Primary nav -->
+  <ul class="w-full flex flex-col gap-0.5 list-none p-0 px-2.5 m-0">
+    <li class="nav-item relative">
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link w-full h-11 rounded-xl flex items-center justify-center text-ink-2 no-underline transition-all duration-200 relative hover:bg-raised hover:text-accent"
+      >
+        <i
+          class="fa-solid fa-house text-[17px] transition-colors duration-200"
+        ></i>
+        <span
+          class="nav-tooltip absolute start-[calc(100%+16px)] top-1/2 -translate-y-1/2 -translate-x-2 bg-raised border border-wire text-ink text-[12px] font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none transition-all duration-[180ms] z-[100] shadow-[0_4px_16px_rgba(0,0,0,0.2)]"
+          >{{ "home" | translate }}</span
+        >
+      </a>
+    </li>
+    <li class="nav-item relative">
+      <a
+        routerLink="/about"
+        routerLinkActive="active"
+        class="nav-link w-full h-11 rounded-xl flex items-center justify-center text-ink-2 no-underline transition-all duration-200 relative hover:bg-raised hover:text-accent"
+      >
+        <i
+          class="fa-solid fa-user text-[17px] transition-colors duration-200"
+        ></i>
+        <span
+          class="nav-tooltip absolute start-[calc(100%+16px)] top-1/2 -translate-y-1/2 -translate-x-2 bg-raised border border-wire text-ink text-[12px] font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none transition-all duration-[180ms] z-[100] shadow-[0_4px_16px_rgba(0,0,0,0.2)]"
+          >{{ "about" | translate }}</span
+        >
+      </a>
+    </li>
+    <li class="nav-item relative">
+      <a
+        routerLink="/projects"
+        routerLinkActive="active"
+        class="nav-link w-full h-11 rounded-xl flex items-center justify-center text-ink-2 no-underline transition-all duration-200 relative hover:bg-raised hover:text-accent"
+      >
+        <i
+          class="fa-solid fa-code text-[17px] transition-colors duration-200"
+        ></i>
+        <span
+          class="nav-tooltip absolute start-[calc(100%+16px)] top-1/2 -translate-y-1/2 -translate-x-2 bg-raised border border-wire text-ink text-[12px] font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none transition-all duration-[180ms] z-[100] shadow-[0_4px_16px_rgba(0,0,0,0.2)]"
+          >{{ "projects" | translate }}</span
+        >
+      </a>
+    </li>
+    <li class="nav-item relative">
+      <a
+        routerLink="/contact"
+        routerLinkActive="active"
+        class="nav-link w-full h-11 rounded-xl flex items-center justify-center text-ink-2 no-underline transition-all duration-200 relative hover:bg-raised hover:text-accent"
+      >
+        <i
+          class="fa-solid fa-envelope text-[17px] transition-colors duration-200"
+        ></i>
+        <span
+          class="nav-tooltip absolute start-[calc(100%+16px)] top-1/2 -translate-y-1/2 -translate-x-2 bg-raised border border-wire text-ink text-[12px] font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none transition-all duration-[180ms] z-[100] shadow-[0_4px_16px_rgba(0,0,0,0.2)]"
+          >{{ "contact" | translate }}</span
+        >
+      </a>
+    </li>
+  </ul>
+
+  <!-- Utility controls pinned to bottom -->
+  <div class="mt-auto w-full flex flex-col items-center gap-0">
+    <div class="w-8 h-px bg-[var(--border-subtle)] mb-4"></div>
+    <div class="w-full px-2.5 flex flex-col gap-0.5">
+      <button
+        class="w-full h-11 rounded-xl flex items-center justify-center text-ink-2 bg-transparent border-none cursor-pointer transition-all duration-200 hover:bg-raised hover:text-accent"
+        (click)="themeService.toggleTheme()"
+        [title]="
+          themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'
+        "
+      >
+        @if (themeService.isDark) {
+          <i class="fa-regular fa-sun text-[17px]"></i>
+        } @else {
+          <i class="fa-solid fa-moon text-[17px]"></i>
+        }
+      </button>
+      <app-changelang [iconOnly]="true"></app-changelang>
+    </div>
   </div>
-  <div class="sidebar sidebar-content flex items-center justify-center">
-    <ul class="text-center flex flex-col gap-10">
-      <li>
-        <a routerLink="/home">
-          <img src="../../assets/images/home.svg" class="text-white" alt="" />
-          <p>{{ "home" | translate }}</p>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     MOBILE TOP NAVBAR
+     ═══════════════════════════════════════ -->
+<nav
+  class="mobile-navbar flex md:hidden items-center justify-between px-5 h-[60px] bg-panel border-b border-b-[var(--border-subtle)] sticky top-0 z-[200] w-full backdrop-blur-md"
+>
+  <a
+    routerLink="/home"
+    class="mobile-logo text-[14px] font-bold text-accent no-underline w-9 h-9 bg-gradient-to-br from-accent-muted to-[rgba(108,99,255,0.06)] border border-wire-hi rounded-[10px] flex items-center justify-center shadow-[0_0_12px_var(--accent-glow)]"
+    [class.arabic]="currentLanguage === 'ar'"
+  >
+    {{ "tm" | translate }}
+  </a>
+
+  <div class="flex items-center gap-2">
+    <button
+      class="w-9 h-9 rounded-[9px] flex items-center justify-center text-ink-2 bg-transparent border-none cursor-pointer transition-all duration-200 hover:bg-raised hover:text-accent"
+      (click)="themeService.toggleTheme()"
+    >
+      @if (themeService.isDark) {
+        <i class="fa-regular fa-sun text-[15px]"></i>
+      } @else {
+        <i class="fa-solid fa-moon text-[15px]"></i>
+      }
+    </button>
+    <button
+      class="hamburger flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-[6px] rounded-[9px] transition-colors duration-200 hover:bg-raised"
+      [class.open]="isMenuOpen()"
+      (click)="toggleMenu()"
+      aria-label="Toggle menu"
+    >
+      <span
+        class="block w-[20px] h-[1.5px] bg-ink rounded-full transition-all duration-[250ms] origin-center"
+      ></span>
+      <span
+        class="block w-[20px] h-[1.5px] bg-ink rounded-full transition-all duration-[250ms] origin-center"
+      ></span>
+      <span
+        class="block w-[14px] h-[1.5px] bg-ink rounded-full transition-all duration-[250ms] origin-center"
+      ></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     MOBILE SLIDE-DOWN MENU
+     ═══════════════════════════════════════ -->
+@if (isMenuOpen()) {
+  <div
+    class="flex md:hidden fixed inset-0 bg-black/50 backdrop-blur-[4px] z-[300]"
+    (click)="closeMenu()"
+  ></div>
+  <div
+    class="flex md:hidden flex-col fixed top-[60px] start-0 end-0 bg-panel border-b border-b-[var(--border-subtle)] z-[400] animate-slide-down"
+  >
+    <ul class="list-none p-3 m-0 flex flex-col gap-0.5">
+      <li (click)="closeMenu()">
+        <a
+          routerLink="/home"
+          routerLinkActive="active-mobile"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="mobile-nav-link flex items-center gap-3 px-4 py-[11px] rounded-xl no-underline text-ink-2 text-[15px] transition-all duration-200 hover:bg-raised hover:text-ink"
+        >
+          <i
+            class="fa-solid fa-house w-5 text-center text-ink-3 text-[15px]"
+          ></i>
+          {{ "home" | translate }}
         </a>
       </li>
-      <li>
-        <a routerLink="about">
-          <img src="../../assets/images/user.svg" class="text-white" alt="" />
-          <p>{{ "about" | translate }}</p>
+      <li (click)="closeMenu()">
+        <a
+          routerLink="/about"
+          routerLinkActive="active-mobile"
+          class="mobile-nav-link flex items-center gap-3 px-4 py-[11px] rounded-xl no-underline text-ink-2 text-[15px] transition-all duration-200 hover:bg-raised hover:text-ink"
+        >
+          <i
+            class="fa-solid fa-user w-5 text-center text-ink-3 text-[15px]"
+          ></i>
+          {{ "about" | translate }}
         </a>
       </li>
-      <li>
-        <a routerLink="projects">
-          <img
-            src="../../assets/images/projects.svg"
-            class="text-white"
-            alt=""
-          />
-          <p>{{ "projects" | translate }}</p>
+      <li (click)="closeMenu()">
+        <a
+          routerLink="/projects"
+          routerLinkActive="active-mobile"
+          class="mobile-nav-link flex items-center gap-3 px-4 py-[11px] rounded-xl no-underline text-ink-2 text-[15px] transition-all duration-200 hover:bg-raised hover:text-ink"
+        >
+          <i
+            class="fa-solid fa-code w-5 text-center text-ink-3 text-[15px]"
+          ></i>
+          {{ "projects" | translate }}
         </a>
       </li>
-      <li>
-        <a routerLink="contact">
-          <img
-            src="../../assets/images/contact.svg"
-            class="text-white"
-            alt=""
-          />
-          <p>{{ "contact" | translate }}</p>
+      <li (click)="closeMenu()">
+        <a
+          routerLink="/contact"
+          routerLinkActive="active-mobile"
+          class="mobile-nav-link flex items-center gap-3 px-4 py-[11px] rounded-xl no-underline text-ink-2 text-[15px] transition-all duration-200 hover:bg-raised hover:text-ink"
+        >
+          <i
+            class="fa-solid fa-envelope w-5 text-center text-ink-3 text-[15px]"
+          ></i>
+          {{ "contact" | translate }}
         </a>
       </li>
     </ul>
-  </div>
-  <div class="lang">
-    <app-changelang></app-changelang>
-  </div>
-</div>
-
-<div class="nav-bar" #navbar>
-  <button class="sidebar-toggle none" (click)="hideNav(navbar)"></button>
-  <ul class="flex flex-col ps-2 justify-start gap-10">
-    <li (click)="hideNav(navbar)">
-      <a routerLink="/home">
-        <p>{{ "home" | translate }}</p>
-      </a>
-    </li>
-    <li (click)="hideNav(navbar)">
-      <a routerLink="about">
-        <p>{{ "about" | translate }}</p>
-      </a>
-    </li>
-    <li (click)="hideNav(navbar)">
-      <a routerLink="projects">
-        <p>{{ "projects" | translate }}</p>
-      </a>
-    </li>
-    <li (click)="hideNav(navbar)">
-      <a routerLink="contact">
-        <p>{{ "contact" | translate }}</p>
-      </a>
-    </li>
-    <li (click)="hideNav(navbar)">
+    <div
+      class="px-3 pb-3 pt-1 border-t border-t-[var(--border-subtle)] flex items-center justify-between gap-3"
+    >
       <app-changelang></app-changelang>
-    </li>
-  </ul>
-</div>
+    </div>
+  </div>
+}

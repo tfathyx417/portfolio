@@ -1,170 +1,325 @@
-<div class="grid sm:grid-cols-1 lg:grid-cols-2 contact my-4 gap-4">
-  <div class="col">
-    <form action="" class="rounded-2xl">
-      <h2 class="pb-5 text-4xl font-semibold">
-        {{ "sendmessage" | translate }}
-      </h2>
-      <div class="row row-cols-2 mb-4">
-        <div class="col-">
-          <label for="name" class="form-label block mb-1">
-            {{ "yourName" | translate }}
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            placeholder="{{ 'enterYourName' | translate }}"
-          />
+<section
+  class="relative py-16 px-16 max-lg:px-10 max-md:px-6 max-md:py-10 overflow-hidden"
+>
+  <!-- Ambient orb -->
+  <div
+    class="absolute -top-20 end-0 w-[520px] h-[520px] rounded-full bg-[radial-gradient(circle,var(--accent-muted)_0%,transparent_62%)] pointer-events-none select-none"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-[1060px] mx-auto relative z-[1]">
+    <div
+      class="grid grid-cols-[1fr_460px] gap-20 items-start max-lg:grid-cols-1 max-lg:gap-14"
+    >
+      <!-- ═══ LEFT ════════════════════════════════════════════ -->
+      <div class="flex flex-col gap-9 max-lg:gap-7">
+
+        <!-- Badge + Heading -->
+        <div appScrollReveal revealDirection="up">
+          <span class="section-badge mb-5">
+            <i class="fa-solid fa-envelope text-[10px]"></i>
+            Contact
+          </span>
+          <h2
+            class="text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-ink leading-[1.18] mb-5"
+          >
+            {{ "LetsTogether" | translate }}
+          </h2>
+          <p class="text-[15px] text-ink-2 leading-[1.85] max-w-[400px] max-lg:max-w-full">
+            {{ "contactDescription" | translate }}
+          </p>
         </div>
-        <div class="col-">
-          <label for="email" class="form-label block mb-1"
-            >{{ "yourEmail" | translate }}
-          </label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="{{ 'enterYourEmail' | translate }}"
-          />
+
+        <!-- Contact details -->
+        <div
+          class="flex flex-col gap-[22px]"
+          appScrollReveal
+          [revealDelay]="80"
+          revealDirection="up"
+        >
+          <a href="mailto:tahamahmoudx417@gmail.com" class="group flex items-center gap-4 no-underline">
+            <div
+              class="w-10 h-10 rounded-xl bg-surface border border-wire flex items-center justify-center text-ink-3 shrink-0 transition-all duration-200 group-hover:border-accent group-hover:text-accent group-hover:bg-accent-muted group-hover:shadow-[0_0_16px_var(--accent-glow)]"
+            >
+              <i class="fa-regular fa-envelope text-[14px]"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-ink-3 uppercase tracking-widest font-medium mb-0.5">
+                {{ "email" | translate }}
+              </p>
+              <p class="text-[14px] text-ink font-medium group-hover:text-accent transition-colors duration-200">
+                tahamahmoudx417&#64;gmail.com
+              </p>
+            </div>
+          </a>
+
+          <a href="tel:+201144638034" class="group flex items-center gap-4 no-underline">
+            <div
+              class="w-10 h-10 rounded-xl bg-surface border border-wire flex items-center justify-center text-ink-3 shrink-0 transition-all duration-200 group-hover:border-accent group-hover:text-accent group-hover:bg-accent-muted group-hover:shadow-[0_0_16px_var(--accent-glow)]"
+            >
+              <i
+                class="fa-solid fa-phone text-[14px]"
+                [class.rotate-[270deg]]="lang === 'ar'"
+              ></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-ink-3 uppercase tracking-widest font-medium mb-0.5">
+                {{ "phone" | translate }}
+              </p>
+              <p class="text-[14px] text-ink font-medium group-hover:text-accent transition-colors duration-200">
+                +20 114 463 8034
+              </p>
+            </div>
+          </a>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-surface border border-wire flex items-center justify-center text-ink-3 shrink-0"
+            >
+              <i class="fa-solid fa-location-dot text-[14px]"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-ink-3 uppercase tracking-widest font-medium mb-0.5">
+                {{ "location" | translate }}
+              </p>
+              <p class="text-[14px] text-ink font-medium">Cairo, Egypt</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-surface border border-wire flex items-center justify-center text-ink-3 shrink-0"
+            >
+              <i class="fa-regular fa-clock text-[14px]"></i>
+            </div>
+            <div>
+              <p class="text-[11px] text-ink-3 uppercase tracking-widest font-medium mb-0.5">
+                {{ "responseTime" | translate }}
+              </p>
+              <p class="text-[14px] text-ink font-medium">{{ "withinhours" | translate }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full h-px bg-wire"></div>
+
+        <!-- Social + availability -->
+        <div
+          class="flex flex-col gap-4"
+          appScrollReveal
+          [revealDelay]="140"
+          revealDirection="up"
+        >
+          <p class="text-[11px] text-ink-3 uppercase tracking-widest font-medium">
+            {{ "followMedia" | translate }}
+          </p>
+          <div class="flex gap-2.5">
+            <a href="https://github.com/taha-mahmoud37" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+              class="w-10 h-10 bg-surface border border-wire rounded-xl flex items-center justify-center no-underline text-ink-2 transition-all duration-200 hover:-translate-y-1 hover:bg-[#24292e] hover:border-[#24292e] hover:text-white hover:shadow-[0_6px_20px_rgba(0,0,0,0.35)]">
+              <i class="fa-brands fa-github text-[15px]"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/taha-mahmoud-1913161aa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              class="w-10 h-10 bg-surface border border-wire rounded-xl flex items-center justify-center no-underline text-ink-2 transition-all duration-200 hover:-translate-y-1 hover:bg-[#0a66c2] hover:border-[#0a66c2] hover:text-white hover:shadow-[0_6px_20px_rgba(10,102,194,0.4)]">
+              <i class="fa-brands fa-linkedin-in text-[15px]"></i>
+            </a>
+            <a href="https://x.com/tahamahmoudx417" target="_blank" rel="noopener noreferrer" aria-label="X"
+              class="w-10 h-10 bg-surface border border-wire rounded-xl flex items-center justify-center no-underline text-ink-2 transition-all duration-200 hover:-translate-y-1 hover:bg-black hover:border-[#333] hover:text-white hover:shadow-[0_6px_20px_rgba(0,0,0,0.4)]">
+              <i class="fa-brands fa-x-twitter text-[15px]"></i>
+            </a>
+            <a href="https://www.facebook.com/share/16csdYm8SC/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+              class="w-10 h-10 bg-surface border border-wire rounded-xl flex items-center justify-center no-underline text-ink-2 transition-all duration-200 hover:-translate-y-1 hover:bg-[#1877f2] hover:border-[#1877f2] hover:text-white hover:shadow-[0_6px_20px_rgba(24,119,242,0.4)]">
+              <i class="fa-brands fa-facebook-f text-[15px]"></i>
+            </a>
+          </div>
+
+          <div
+            class="inline-flex items-center gap-2.5 self-start bg-good/10 border border-good/20 px-4 py-2.5 rounded-full"
+          >
+            <span class="w-[7px] h-[7px] bg-good rounded-full shrink-0 animate-pulse-dot"></span>
+            <span class="text-[12.5px] font-semibold text-good">
+              {{ "availableProjects" | translate }}
+            </span>
+          </div>
         </div>
       </div>
-      <div class="row row-cols-1 mb-3">
-        <div class="col- mb-4">
-          <label for="message" class="form-label"
-            >{{ "subject" | translate }}
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="message"
-            placeholder="{{ 'projectDiscussion' | translate }}"
-          />
-        </div>
-        <div class="col-">
-          <label for="message" class="form-label"
-            >{{ "message" | translate }}
-          </label>
-          <textarea
-            class="form-control"
-            id="message"
-            rows="3"
-            placeholder="{{ 'enteryourMessage' | translate }}"
-          ></textarea>
-        </div>
+
+      <!-- ═══ RIGHT: Form ══════════════════════════════════════ -->
+      <div
+        class="bg-surface border border-wire rounded-2xl p-8 max-md:p-5 shadow-[0_8px_48px_rgba(0,0,0,0.1)]"
+        appScrollReveal
+        [revealDelay]="100"
+        revealDirection="right"
+      >
+        <!-- Success state -->
+        @if (status() === 'sent') {
+          <div class="flex flex-col items-center justify-center text-center py-10 gap-5">
+            <div
+              class="w-14 h-14 rounded-full bg-good/10 border border-good/25 flex items-center justify-center"
+            >
+              <i class="fa-solid fa-check text-good text-[20px]"></i>
+            </div>
+            <div>
+              <h3 class="text-[1.1rem] font-bold text-ink mb-2">
+                {{ "messageSent" | translate }}
+              </h3>
+              <p class="text-[13px] text-ink-3">{{ "formSubtitle" | translate }}</p>
+            </div>
+            <button
+              (click)="reset()"
+              class="inline-flex items-center gap-2 text-[13px] font-medium text-accent bg-accent-muted border border-wire-hi rounded-xl px-5 py-[10px] cursor-pointer transition-all duration-200 hover:bg-accent hover:text-white"
+            >
+              <i class="fa-solid fa-rotate-left text-[11px]"></i>
+              {{ "sendAnother" | translate }}
+            </button>
+          </div>
+        } @else {
+          <h3 class="text-[1.1rem] font-bold text-ink mb-1">
+            {{ "sendmessage" | translate }}
+          </h3>
+          <p class="text-[13px] text-ink-3 mb-7">{{ "formSubtitle" | translate }}</p>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-[18px]" novalidate>
+            <!-- Name + Email row -->
+            <div class="grid grid-cols-2 gap-3.5 max-sm:grid-cols-1">
+              <!-- Name -->
+              <div class="flex flex-col gap-1.5">
+                <label for="name" class="text-[12px] font-semibold text-ink-2 uppercase tracking-wide">
+                  {{ "yourName" | translate }}
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  [placeholder]="'enterYourName' | translate"
+                  class="bg-raised border rounded-xl px-4 py-[13px] text-[14px] text-ink placeholder:text-ink-3 outline-none transition-all duration-200 focus:shadow-[0_0_0_3px_var(--input-focus-ring)]"
+                  [class.border-wire]="!isTouched('name') || form.get('name')?.valid"
+                  [class.border-[var(--error-color)]]="isTouched('name') && form.get('name')?.invalid"
+                  [class.focus:border-accent]="!isTouched('name') || form.get('name')?.valid"
+                  [class.bg-[var(--error-bg)]]="isTouched('name') && form.get('name')?.invalid"
+                />
+                @if (hasError('name', 'required')) {
+                  <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                    <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                    Name is required
+                  </p>
+                }
+                @if (hasError('name', 'minlength')) {
+                  <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                    <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                    At least 2 characters
+                  </p>
+                }
+              </div>
+
+              <!-- Email -->
+              <div class="flex flex-col gap-1.5">
+                <label for="email" class="text-[12px] font-semibold text-ink-2 uppercase tracking-wide">
+                  {{ "yourEmail" | translate }}
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  [placeholder]="'enterYourEmail' | translate"
+                  class="bg-raised border rounded-xl px-4 py-[13px] text-[14px] text-ink placeholder:text-ink-3 outline-none transition-all duration-200 focus:shadow-[0_0_0_3px_var(--input-focus-ring)]"
+                  [class.border-wire]="!isTouched('email') || form.get('email')?.valid"
+                  [class.border-[var(--error-color)]]="isTouched('email') && form.get('email')?.invalid"
+                  [class.bg-[var(--error-bg)]]="isTouched('email') && form.get('email')?.invalid"
+                />
+                @if (hasError('email', 'required')) {
+                  <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                    <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                    Email is required
+                  </p>
+                }
+                @if (hasError('email', 'email')) {
+                  <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                    <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                    Enter a valid email
+                  </p>
+                }
+              </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="flex flex-col gap-1.5">
+              <label for="subject" class="text-[12px] font-semibold text-ink-2 uppercase tracking-wide">
+                {{ "subject" | translate }}
+              </label>
+              <input
+                id="subject"
+                type="text"
+                formControlName="subject"
+                [placeholder]="'projectDiscussion' | translate"
+                class="bg-raised border rounded-xl px-4 py-[13px] text-[14px] text-ink placeholder:text-ink-3 outline-none transition-all duration-200 focus:shadow-[0_0_0_3px_var(--input-focus-ring)]"
+                [class.border-wire]="!isTouched('subject') || form.get('subject')?.valid"
+                [class.border-[var(--error-color)]]="isTouched('subject') && form.get('subject')?.invalid"
+                [class.bg-[var(--error-bg)]]="isTouched('subject') && form.get('subject')?.invalid"
+              />
+              @if (hasError('subject', 'required')) {
+                <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                  Subject is required
+                </p>
+              }
+            </div>
+
+            <!-- Message -->
+            <div class="flex flex-col gap-1.5">
+              <label for="message" class="text-[12px] font-semibold text-ink-2 uppercase tracking-wide">
+                {{ "message" | translate }}
+              </label>
+              <textarea
+                id="message"
+                rows="5"
+                formControlName="message"
+                [placeholder]="'enteryourMessage' | translate"
+                class="bg-raised border rounded-xl px-4 py-[13px] text-[14px] text-ink placeholder:text-ink-3 outline-none transition-all duration-200 resize-none min-h-[130px] focus:shadow-[0_0_0_3px_var(--input-focus-ring)]"
+                [class.border-wire]="!isTouched('message') || form.get('message')?.valid"
+                [class.border-[var(--error-color)]]="isTouched('message') && form.get('message')?.invalid"
+                [class.bg-[var(--error-bg)]]="isTouched('message') && form.get('message')?.invalid"
+              ></textarea>
+              @if (hasError('message', 'required')) {
+                <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                  Message is required
+                </p>
+              }
+              @if (hasError('message', 'minlength')) {
+                <p class="text-[11px] text-[var(--error-color)] flex items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation text-[10px]"></i>
+                  At least 10 characters
+                </p>
+              }
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              [disabled]="status() === 'sending'"
+              class="w-full flex items-center justify-center gap-2.5 bg-accent text-white border-none py-[14px] rounded-xl text-[15px] font-semibold cursor-pointer mt-1 transition-all duration-200 hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_10px_32px_var(--accent-glow)] disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none"
+            >
+              @if (status() === 'sending') {
+                <i class="fa-solid fa-circle-notch fa-spin text-[14px]"></i>
+                {{ "sending" | translate }}
+              } @else {
+                {{ "submit" | translate }}
+                <i class="fa-solid fa-paper-plane text-[13px]"></i>
+              }
+            </button>
+
+            <!-- Error banner -->
+            @if (status() === 'error') {
+              <div
+                class="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[var(--error-bg)] border border-[var(--error-color)]/30 text-[13px] text-[var(--error-color)]"
+              >
+                <i class="fa-solid fa-triangle-exclamation text-[13px] shrink-0"></i>
+                {{ "messageError" | translate }}
+              </div>
+            }
+          </form>
+        }
       </div>
-      <div>
-        <button type="submit" class="btn mt-2 text-white text-lg font-semibold">
-          {{ "submit" | translate }}
-        </button>
-      </div>
-    </form>
+    </div>
   </div>
-  <div class="col">
-    <h3 class="mb-3 text-3xl font-bold">
-      {{ "contactInformation" | translate }}
-    </h3>
-    <div class="user-info flex flex-col gap-3">
-      <div class="email flex gap-4">
-        <div class="icon flex justify-center items-center">
-          <i class="fa-regular fa-envelope"></i>
-        </div>
-        <div>
-          <p class="text-xl font-semibold">{{ "email" | translate }}</p>
-          <a href="mailto:tahamahmoudx417&#64;gmail.com">
-            tahamahmoudx417&#64;gmail.com
-          </a>
-        </div>
-      </div>
-      <div class="phone flex gap-4">
-        <div class="icon flex justify-center items-center">
-          <i [class.phone-trans]="lang === 'ar'" class="fa-solid fa-phone"></i>
-        </div>
-        <div>
-          <p class="text-xl font-semibold">{{ "phone" | translate }}</p>
-          <a href="" class="text-sm font-medium"> +20 114 463 8034 </a>
-        </div>
-      </div>
-      <div class="location flex gap-4">
-        <div class="icon flex justify-center items-center">
-          <i class="fa-solid fa-location-dot"></i>
-        </div>
-        <div>
-          <p class="text-xl font-semibold">Location</p>
-          <a href="tahamahmoudx417@gmail.com" class="text-sm font-medium">
-            Cairo, Egypt
-          </a>
-        </div>
-      </div>
-      <div class="time flex gap-4">
-        <div class="icon flex justify-center items-center">
-          <i class="fa-regular fa-clock"></i>
-        </div>
-        <div>
-          <p class="text-xl font-semibold">{{ "responseTime" | translate }}</p>
-          <a href="tahamahmoudx417@gmail.com" class="text-sm font-medium">
-            {{ "withinhours" | translate }}
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="social mt-4">
-      <h3 class="text-lg font-medium">{{ "followMedia" | translate }}</h3>
-      <div class="social-icons flex gap-4 mt-3">
-        <div class="github">
-          <a
-            href="https://github.com/taha-mahmoud37"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-2xl"
-          >
-            <i class="fa-brands fa-github"></i>
-          </a>
-        </div>
-        <div class="linkedin">
-          <a
-            href="https://www.linkedin.com/in/taha-mahmoud-1913161aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-2xl"
-          >
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-        </div>
-        <div class="twitter">
-          <a
-            href="https://x.com/tahamahmoudx417?t=K5SXMT4H8UDdBy8QBwRRRQ&s=09"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-2xl"
-          >
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-        </div>
-        <div class="facebook">
-          <a
-            href="https://www.facebook.com/share/16csdYm8SC/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-2xl"
-          >
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="work-together mt-4">
-      <h3 class="text-xl font-semibold pb-2">
-        {{ "LetsTogether" | translate }}
-      </h3>
-      <p class="text-base font-normal pb-2">
-        {{ "contactDescription" | translate }}
-      </p>
-      <div class="flex items-center text-green-400">
-        <div class="w-2 h-2 bg-green-400 rounded-full me-2"></div>
-        <span class="text-sm font-medium">{{
-          "availableProjects" | translate
-        }}</span>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
