@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -19,11 +19,14 @@ export class LanguageService {
   ];
   constructor(
     private translateService: TranslateService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   init() {
-    const lang = localStorage.getItem('lang');
+    const lang = isPlatformBrowser(this.platformId)
+      ? localStorage.getItem('lang')
+      : null;
     this.setLang(lang ? lang : this.defaultLang);
   }
   setLang(lang: string) {
@@ -42,7 +45,9 @@ export class LanguageService {
     this.saveLang(language);
   }
   saveLang(lang: string) {
-    localStorage.setItem('lang', lang);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('lang', lang);
+    }
     this.translateService.use(lang);
   }
   get currentLang() {

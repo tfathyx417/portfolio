@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -16,6 +16,7 @@ import { ThemeService } from './services/theme.service';
 export class AppComponent implements OnInit {
   private router = inject(Router);
   private document = inject(DOCUMENT);
+  private platformId = inject(PLATFORM_ID);
 
   constructor(
     private languageService: LanguageService,
@@ -26,6 +27,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     // The scrollable area is <main class="content">, not the window, so the
     // router's scrollPositionRestoration can't reset it. Scroll it to the top
     // on every navigation so each page starts at the top.

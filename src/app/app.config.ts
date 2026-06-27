@@ -4,6 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { AppTranslateModule } from './modules/app-translate/app-translate.module';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideHttpClient(),
-    importProvidersFrom(AppTranslateModule.forRoot()),
+    importProvidersFrom(AppTranslateModule.forRoot()), provideClientHydration(withEventReplay()),
   ],
 };
