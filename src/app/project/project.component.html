@@ -6,7 +6,10 @@
     <img
       [src]="project().image"
       [alt]="project() | getlang: 'title'"
+      width="400"
+      height="190"
       loading="lazy"
+      decoding="async"
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
     />
 

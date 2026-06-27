@@ -79,7 +79,10 @@
                 <img
                   [src]="item.img"
                   [alt]="item.name"
+                  width="30"
+                  height="30"
                   loading="lazy"
+                  decoding="async"
                   class="w-[30px] h-[30px] object-contain rounded"
                 />
               </div>
@@ -116,9 +119,12 @@
     >
       <div class="relative w-full max-w-[320px] max-lg:max-w-[260px]">
         <img
-          src="assets/images/about.jpeg"
+          src="assets/images/about.webp"
           alt="Taha Mahmoud"
+          width="320"
+          height="420"
           loading="lazy"
+          decoding="async"
           class="w-full h-[420px] object-cover rounded-2xl border-2 border-accent/20 relative z-[1] shadow-[0_0_40px_var(--accent-glow),0_20px_50px_rgba(0,0,0,0.25)] max-lg:h-[300px] max-md:h-[240px]"
         />
         <div

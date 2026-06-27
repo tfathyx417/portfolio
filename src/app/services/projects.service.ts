@@ -7,7 +7,7 @@ export class ProjectsService {
     return [
       {
         id: 1,
-        image: 'assets/images/gym.jpg',
+        image: 'assets/images/gym.webp',
         title: 'Fithub Gym',
         titleAr: 'فيت هاب جيم',
         description:
@@ -21,7 +21,7 @@ export class ProjectsService {
       },
       {
         id: 2,
-        image: 'assets/images/learnnig.jpg',
+        image: 'assets/images/learnnig.webp',
         title: 'Online Learning Platform',
         titleAr: 'منصة تعليمية إلكترونية',
         description:
@@ -34,7 +34,7 @@ export class ProjectsService {
       },
       {
         id: 3,
-        image: 'assets/images/Furniture.jpg',
+        image: 'assets/images/furniture.webp',
         title: 'Furniture Store',
         titleAr: 'متجر أثاث',
         description:
@@ -47,7 +47,7 @@ export class ProjectsService {
       },
       {
         id: 4,
-        image: 'assets/images/pharma.jpg',
+        image: 'assets/images/pharma.webp',
         title: 'Pharmacy App',
         titleAr: 'تطبيق صيدلية',
         description:
@@ -60,7 +60,7 @@ export class ProjectsService {
       },
       {
         id: 5,
-        image: 'assets/images/movies.jpg',
+        image: 'assets/images/movies.webp',
         title: 'Movie App',
         titleAr: 'تطبيق أفلام',
         description:
@@ -73,7 +73,7 @@ export class ProjectsService {
       },
       {
         id: 6,
-        image: 'assets/images/tomato.jpg',
+        image: 'assets/images/tomato.webp',
         title: 'Tomato Restaurant',
         titleAr: 'مطعم توماتو',
         description:

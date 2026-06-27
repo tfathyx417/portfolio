@@ -88,9 +88,13 @@
     <div class="w-8 h-px bg-[var(--border-subtle)] mb-4"></div>
     <div class="w-full px-2.5 flex flex-col gap-0.5">
       <button
+        type="button"
         class="w-full h-11 rounded-xl flex items-center justify-center text-ink-2 bg-transparent border-none cursor-pointer transition-all duration-200 hover:bg-raised hover:text-accent"
         (click)="themeService.toggleTheme()"
         [title]="
+          themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'
+        "
+        [attr.aria-label]="
           themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'
         "
       >
@@ -121,13 +125,17 @@
 
   <div class="flex items-center gap-2">
     <button
+      type="button"
       class="w-9 h-9 rounded-[9px] flex items-center justify-center text-ink-2 bg-transparent border-none cursor-pointer transition-all duration-200 hover:bg-raised hover:text-accent"
       (click)="themeService.toggleTheme()"
+      [attr.aria-label]="
+        themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'
+      "
     >
       @if (themeService.isDark) {
-        <i class="fa-regular fa-sun text-[15px]"></i>
+        <i class="fa-regular fa-sun text-[15px]" aria-hidden="true"></i>
       } @else {
-        <i class="fa-solid fa-moon text-[15px]"></i>
+        <i class="fa-solid fa-moon text-[15px]" aria-hidden="true"></i>
       }
     </button>
     <button

@@ -21,19 +21,35 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@tahamahmoudx417" />
-    <link rel="icon" type="image/x-icon" href="assets/images/logo.png" />
+    <link rel="icon" type="image/png" href="assets/images/logo-64.png" />
+    <!-- Preload the hero (LCP) image -->
+    <link rel="preload" as="image" href="assets/images/profile.webp" fetchpriority="high" />
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Only used weights: 400, 500, 600, 700, 800 -->
+    <!-- Fonts loaded non-render-blocking (only used weights: 400, 500, 600, 700, 800) -->
     <link
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <app-root></app-root>
