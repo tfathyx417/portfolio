@@ -39,8 +39,63 @@
       href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Inline splash loader: paints instantly with the static HTML and is
+         removed by main.ts the moment Angular finishes bootstrapping. -->
+    <style>
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-color, #080c14);
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+      #app-loader.app-loader--hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #app-loader .app-loader__ring {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #app-loader .app-loader__ring::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid rgba(108, 99, 255, 0.18);
+        border-top-color: #6c63ff;
+        animation: app-loader-spin 1s linear infinite;
+      }
+      #app-loader .app-loader__tm {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.05em;
+        color: #6c63ff;
+      }
+      @keyframes app-loader-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #app-loader .app-loader__ring::before {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <app-root></app-root>
+    <div id="app-loader" aria-hidden="true">
+      <div class="app-loader__ring"><span class="app-loader__tm">TM</span></div>
+    </div>
   </body>
 </html>

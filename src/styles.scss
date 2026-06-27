@@ -1,43 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  /* Accent */
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-muted: var(--accent-muted);
-  --color-accent-glow: var(--accent-glow);
-
-  /* Backgrounds */
-  --color-page: var(--bg-color);
-  --color-panel: var(--sidebar-bg);
-  --color-surface: var(--bg-surface);
-  --color-raised: var(--bg-elevated);
-
-  /* Borders */
-  --color-wire: var(--border-subtle);
-  --color-wire-hi: var(--border-accent);
-
-  /* Text */
-  --color-ink: var(--main-color);
-  --color-ink-2: var(--text-secondary);
-  --color-ink-3: var(--text-muted);
-
-  /* Status */
-  --color-good: var(--success-color);
-
-  /* Fonts */
-  --font-poppins: "Poppins", sans-serif;
-  --font-arabic: "Almarai", sans-serif;
-  --font-mono: "Fira Code", "Cascadia Code", ui-monospace, monospace;
-
-  /* Custom animations */
-  --animate-pulse-ring: pulse-ring 3s ease-in-out infinite;
-  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
-  --animate-slide-down: slideDown 0.2s ease;
-  --animate-fade-in-up: fadeInUp 0.55s ease forwards;
-  --animate-float: float 4s ease-in-out infinite;
-  --animate-shimmer: shimmer 2.8s linear infinite;
-}
+// Tailwind's entry and @theme tokens live in src/tailwind.css (loaded before
+// this file in angular.json) so they aren't processed by Dart Sass — which
+// would otherwise flag `@import "tailwindcss"` as a deprecated Sass @import.
 
 // ===========================
 // DARK THEME (default)
