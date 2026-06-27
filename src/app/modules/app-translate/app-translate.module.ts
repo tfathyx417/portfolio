@@ -1,16 +1,26 @@
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Observable, of } from 'rxjs';
 
-const httpLoaderFactory = (http: HttpClient) => {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-};
+import en from '../../../assets/i18n/en.json';
+import ar from '../../../assets/i18n/ar.json';
+
+type Translations = Record<string, string>;
+
+const TRANSLATIONS: Record<string, Translations> = { en, ar };
+
+// Translations are bundled and resolved synchronously instead of fetched over
+// HTTP. This removes a render-blocking network round-trip on boot (every visible
+// string uses the translate pipe) and keeps rendering correct under prerender/SSR.
+class StaticTranslateLoader implements TranslateLoader {
+  getTranslation(lang: string): Observable<Translations> {
+    return of(TRANSLATIONS[lang] ?? TRANSLATIONS['en']);
+  }
+}
 
 const translateLoader: Provider = {
   provide: TranslateLoader,
-  useFactory: httpLoaderFactory,
-  deps: [HttpClient],
+  useClass: StaticTranslateLoader,
 };
 
 @NgModule({})
