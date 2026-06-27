@@ -14,8 +14,6 @@ import { ThemeService } from './services/theme.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  loading = false;
-
   private router = inject(Router);
   private document = inject(DOCUMENT);
 
@@ -28,9 +26,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
-    setTimeout(() => (this.loading = false), 400);
-
     // The scrollable area is <main class="content">, not the window, so the
     // router's scrollPositionRestoration can't reset it. Scroll it to the top
     // on every navigation so each page starts at the top.
